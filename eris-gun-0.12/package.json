@@ -1,0 +1,9 @@
+{
+  "name": "apir_app",
+  "version": "0.0.1",
+  "dependencies": {
+    "eris-contracts": "^0.15.9",
+    "eris-db": "^0.15.10",
+    "forever": "^0.15.3"
+  }
+}

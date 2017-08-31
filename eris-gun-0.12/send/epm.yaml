@@ -1,0 +1,31 @@
+jobs:
+
+- name: amt
+  job:
+    set:
+      val: 99999999
+
+- name: receipient
+  job:
+    set:
+      val: $client_addr
+
+- name: sendTx
+  job:
+    send:
+      destination: $receipient
+      amount: $amt
+      wait: false
+
+- name: sendTxQuery
+  job:
+    query-account:
+      account: $receipient
+      field: balance
+
+- name: sendTxAssert
+  job:
+    assert:
+      key: $sendTxQuery
+      relation: eq
+      val: $amt

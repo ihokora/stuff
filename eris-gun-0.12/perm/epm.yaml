@@ -1,0 +1,50 @@
+jobs:
+
+- name: permSetName
+  job:
+    permission:
+      action: set_base
+      target: $client_addr
+      permission: name
+      value: "true"
+      wait: false
+
+- name: permSetCall
+  job:
+    permission:
+      action: set_base
+      target: $client_addr
+      permission: call
+      value: "true"
+      wait: false
+
+- name: permSetSend
+  job:
+    permission:
+      action: set_base
+      target: $client_addr
+      permission: send
+      value: "true"
+      wait: false
+
+- name: permSetHasRole
+  job:
+    permission:
+      action: set_base
+      target: $client_addr
+      permission: has_role
+      value: "true"
+      wait: false
+
+- name: queryPermBase
+  job:
+    query-account:
+      account: $client_addr
+      field: permissions.base
+
+- name: assertPermBase
+  job:
+    assert:
+      key: $queryPermBase
+      relation: eq
+      val: 2118
